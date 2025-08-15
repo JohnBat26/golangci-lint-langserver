@@ -59,7 +59,7 @@ func (h *langHandler) lint(uri DocumentURI) ([]Diagnostic, error) {
 
 	path := uriToPath(string(uri))
 	dir, file := filepath.Split(path)
-
+    h.command = []string{"golangci-lint", "run", "--output.json.path=stdout", "--output.text.path=false","--issues-exit-code=1", "--show-stats=false", "--tests"}
 	args := make([]string, 0, len(h.command))
 	args = append(args, h.command[1:]...)
 	args = append(args, dir)
